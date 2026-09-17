@@ -21,12 +21,12 @@
 
 ## Test 2: Sparkline KPI & Hierarchical Multi-Level Table
 
-**Prompt:** "We need an executive KPI and performance breakdown section for our dashboard. Author LookML elements for a headline gross revenue KPI with a 30-day sparkline and dark-mode Liquid tooltip, followed by a multi-level performance table with collapsible row groups for department, category, and brand."
+**Prompt:** "Author LookML dashboard elements into '/tmp/executive_kpis.dashboard.lookml' for our executive performance section: 1) Headline gross revenue single_value KPI with a 30-day sparkline and dark-mode Liquid tooltip, and 2) Multi-level performance table with collapsible row groups for department, category, and brand. Provide the complete LookML dashboard file."
 
 **Verify:**
-- KPI element uses `type: single_value`, `sparkline: true`, and `show_single_value_title: true`.
+- KPI element uses `type: single_value`, enables sparkline via `show_chart_component: true` (or `sparkline: true`) with time dimension and gross revenue measure.
 - KPI embeds `global_tooltip_options` with custom dark-mode styling and Liquid template variables (`{{ ... }}`).
-- Table element uses `type: looker_grid`, enables `row_groups: true` with `collapsible: true`, and includes `bars_in_table: true`.
+- Table element uses `type: looker_grid`, configures `row_groups` with `enabled: true` and `default_display_level: collapsed` (or `collapsible: true`), with row grouping fields for department, category, and brand.
 - Both elements conform to default half-width `width: 36` and standard `height: 14`.
 
 ---
