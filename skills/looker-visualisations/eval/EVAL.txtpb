@@ -14,9 +14,9 @@ cases {
 cases {
   name: "build_sparkline_kpi_and_hierarchical_table"
   prompt: "Author LookML dashboard elements into '/tmp/executive_kpis.dashboard.lookml' for our executive performance section: 1) Headline gross revenue single_value KPI with a 30-day sparkline and dark-mode Liquid tooltip, and 2) Multi-level performance table with collapsible row groups for department, category, and brand. Provide the complete LookML dashboard file."
-  expectations: "The single_value KPI element specifies sparkline: true with show_single_value_title: true."
+  expectations: "The single_value KPI element specifies show_chart_component: true (or sparkline: true) with time dimension and gross revenue measure."
   expectations: "The KPI element configures global_tooltip_options with custom dark-mode styling and Liquid template variables."
-  expectations: "The table element uses type: looker_grid, enables row_groups: true with collapsible: true, and includes bars_in_table: true for visual metric representation."
+  expectations: "The table element uses type: looker_grid, configures row_groups with enabled: true and collapsible or default_display_level: collapsed, and includes measures for performance representation."
   expectations: "Both elements adhere to the default half-width width: 36 and standard height: 14 grid geometry."
 }
 
