@@ -1,9 +1,9 @@
 suite_name: "looker-visualisations"
-timeout_seconds: 300
+timeout_seconds: 600
 
 cases {
   name: "author_modern_framework_dashboard"
-  prompt: "Create a modern 2026 LookML dashboard definition for executive sales overview under `dashboards/sales_overview.dashboard.lookml`. It needs an executive summary banner, a navigation button linking to `/dashboards/deep_dive`, global filters for year, region, and category, and a net revenue column chart with value labels and active filter bindings."
+  prompt: "Create a LookML dashboard file at '/tmp/sales_overview.dashboard.lookml' for an executive sales overview. Incorporate: 1) Executive summary banner, 2) Navigation button linking to '/dashboards/deep_dive', 3) Global filters for year, region, and category, and 4) Net revenue column chart with value labels and active filter bindings. Follow 2026 modern visualization guidelines."
   expectations: "The dashboard specifies preferred_viewer: dashboards-next, style: modern, layout: newspaper, and layout_granularity: granular (72-column grid)."
   expectations: "The dashboard defines global filters with field_filter and sets up listen: blocks on data tiles mapping dashboard filters to LookML fields."
   expectations: "The data tile uses modern2026: true, default half-width width: 36, standard height: 14, show_value_labels: true, and declutters y-axis with y_axes: [{showValues: false}]."
@@ -13,7 +13,7 @@ cases {
 
 cases {
   name: "build_sparkline_kpi_and_hierarchical_table"
-  prompt: "We need an executive KPI and performance breakdown section for our dashboard. Author LookML elements for a headline gross revenue KPI with a 30-day sparkline and dark-mode Liquid tooltip, followed by a multi-level performance table with collapsible row groups for department, category, and brand."
+  prompt: "Author LookML dashboard elements into '/tmp/executive_kpis.dashboard.lookml' for our executive performance section: 1) Headline gross revenue single_value KPI with a 30-day sparkline and dark-mode Liquid tooltip, and 2) Multi-level performance table with collapsible row groups for department, category, and brand. Provide the complete LookML dashboard file."
   expectations: "The single_value KPI element specifies sparkline: true with show_single_value_title: true."
   expectations: "The KPI element configures global_tooltip_options with custom dark-mode styling and Liquid template variables."
   expectations: "The table element uses type: looker_grid, enables row_groups: true with collapsible: true, and includes bars_in_table: true for visual metric representation."
@@ -22,7 +22,7 @@ cases {
 
 cases {
   name: "implement_cartesian_combo_and_status_waterfall"
-  prompt: "Author Cartesian visualization elements in LookML: 1) A YoY order count combo chart plotting current year and prior year bars with a difference line, ensuring 0 and null values are completely suppressed from plotting; 2) A revenue contribution waterfall chart broken down by fulfillment status."
+  prompt: "Create a LookML dashboard file at '/tmp/cartesian_analytics.dashboard.lookml' containing two visualizations: 1) A YoY order count combo chart plotting current year and prior year bars with a difference line, ensuring 0 and null values are completely suppressed from plotting; 2) A revenue contribution waterfall chart broken down by fulfillment status."
   expectations: "The combo chart uses type: looker_line with series_types specifying column for bar metrics and line for the difference metric."
   expectations: "The combo chart suppresses zero and null values using show_null_points: false and show_null_labels: false."
   expectations: "The waterfall chart uses type: looker_waterfall with fields [order_items.status, order_items.total_sale_price] and configured up_color, down_color, and total_color."
@@ -31,7 +31,7 @@ cases {
 
 cases {
   name: "spatial_bullet_targets_and_sankey_flows"
-  prompt: "Our operations team needs specialized visualizations: 1) A bullet gauge chart showing regional sales actuals against 80% and 100% quota targets; 2) A customer journey Sankey flow tracking progression from traffic source through device and conversion."
+  prompt: "Create a LookML dashboard file at '/tmp/operations_flows.dashboard.lookml' for our operations section: 1) A bullet gauge chart showing regional sales actuals against 80% and 100% quota targets; 2) A customer journey Sankey flow tracking progression from traffic source through device and conversion."
   expectations: "The bullet chart uses type: looker_bullet with ranges defining target performance bands and marker_color for quota thresholds."
   expectations: "The Sankey diagram specifies type: looker_sankey, enables flow_gradient: true, and caps queries with limit: 50 to prevent unreadable node congestion."
   expectations: "Both visual elements specify modern2026: true and conform to the standard 72-col grid geometry."
@@ -39,7 +39,7 @@ cases {
 
 cases {
   name: "highcharts_declarative_formatters_override"
-  prompt: "Create a LookML column chart visualization for category revenue that dynamically highlights bars exceeding the average revenue in green and bars below average in grey, accompanied by an aligned horizontal mean reference line."
+  prompt: "Create a LookML dashboard file at '/tmp/advanced_revenue_chart.dashboard.lookml' containing a column chart visualization definition for category revenue that dynamically highlights bars exceeding the average revenue in green and bars below average in grey using Highcharts declarative formatters, accompanied by an aligned horizontal mean reference line."
   expectations: "The element defines a reference_lines block with reference_type: line and line_value: mean."
   expectations: "The element includes an advanced_chart_config block configuring declarative formatters."
   expectations: "The formatter rule uses condition: 'value >= mean' with styled properties (color, dataLabels)."
